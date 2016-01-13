@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+    <properties>
+        <title>Ferris Attachment</title>
+        <author email="mjremijan@yahoo.com">Michael Remijan</author>
+    </properties>
+
+    <body>
+        <section name="Command Line Arguments">
+            <p>
+				Here are the command line arguments.
+			</p>
+			<source>
+USAGE
+  start-attachment.sh
+    -unsent   /path/to/directory/for/unsent/attachments
+    -sent     /path/to/directory/for/sent/attachments
+    -to       "Rita Red &lt;rita.red@somewhere.com&gt;, Oscar Orange &lt;oscar.orange@somewhere.com&gt;"
+    -subject  "Attachment email"</source>
+					
+            <p>
+                Now that you know the command line arguments, Next is <a href="scheduling.html" alt="scheduling">Scheduling</a>.
+            </p>			
+		</section>
+	</body>
+</document>

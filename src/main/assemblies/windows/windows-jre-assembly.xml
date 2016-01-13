@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3 http://maven.apache.org/xsd/assembly-1.1.3.xsd">
+    
+    <id>${ferrisWindowsAssemblyId}</id>
+	<baseDirectory>${project.build.finalName}-${ferrisWindowsAssemblyId}</baseDirectory>
+    <formats>
+        <format>zip</format>
+    </formats>
+     
+    <files>
+        <file>
+            <source>target/${project.build.finalName}-windows.jar</source>
+            <outputDirectory>lib</outputDirectory>            
+            <filtered>false</filtered>
+        </file>
+    </files>    
+    <fileSets>
+        
+        <fileSet>
+            <directory>src/main/assemblies/windows/bat</directory>
+            <outputDirectory>bin</outputDirectory>
+            <includes>
+                <include>*.bat</include>
+            </includes>
+            <filtered>true</filtered>
+            <lineEnding>windows</lineEnding>
+        </fileSet>
+        
+        <fileSet>
+            <directory>src/main/assemblies/conf</directory>
+            <outputDirectory>conf</outputDirectory>
+            <includes>
+                <include>**</include>
+            </includes>
+            <filtered>false</filtered>
+            <lineEnding>windows</lineEnding>
+        </fileSet>
+        
+        <fileSet>
+            <directory>target/site</directory>
+            <outputDirectory>docs</outputDirectory>
+            <includes>
+                <include>**</include>
+            </includes>
+            <fileMode>0644</fileMode>
+            <directoryMode>0755</directoryMode>
+        </fileSet>
+        
+        <fileSet>
+            <directory>src/main/assemblies/windows/zulu1.8.0_60-8.9.0.4-win64/jre</directory>
+            <outputDirectory>jre</outputDirectory>
+            <includes>
+                <include>**</include>
+            </includes>
+            <filtered>false</filtered>
+        </fileSet>
+
+        <fileSet>
+            <directory>src/main/assemblies/logs</directory>
+            <outputDirectory>logs</outputDirectory>
+            <includes>
+                <include>**</include>
+            </includes>
+            <filtered>false</filtered>
+        </fileSet>
+        
+    </fileSets>
+    
+    <dependencySets>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>lib</outputDirectory>
+        </dependencySet>        
+    </dependencySets>
+</assembly>

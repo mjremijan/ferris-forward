@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+    <properties>
+        <title>Ferris Attachment</title>
+        <author email="mjremijan@yahoo.com">Michael Remijan</author>
+    </properties>
+
+    <body>
+        <section name="Configuration">
+            <p>
+                Configuring Attachment is not that difficult.  This page documents 
+                everything you need to do.
+            </p>
+        </section>
+		
+        <section name="JRE">
+            <p>
+                Attachment requires Java 8. The Linux download comes embedded
+                with a Java 8 JRE, so Attachment does not depend on the
+                system-level JRE to run.  
+            </p>
+            <p>
+                However, if you want to override the JRE that comes embedded
+                with Attachment you can do so by editing, in the <code>[ATTACHMENT_HOME]/bin/</code>
+                directory, the <code>start-attachment.sh</code> file.
+            </p>            
+        </section>
+		
+        <section name="Logging">
+            <p>
+                See the <a href="logging.html">Logging page</a> for more information
+                about configuring logging.
+            </p>
+        </section>
+		
+        <section name="SMTP Account">
+            <p>
+                Attachment needs the SMTP information for your email provider. Each
+                email provider is different so how you get this information is 
+                up to you.  
+            </p>
+            <p>
+                In the <code>[ATTACHMENT_HOME]/conf/</code> directory, make a copy
+                of <code>email(example).properties</code> as <code>email.properties</code>.
+                Edit <code>email.properties</code>, adding your SMTP account
+                details.
+            </p>
+            <source>
+host=smtp.somewhere.org             // Hostname of the SMTP server
+port=44                             // Port of the SMTP server
+username=someone                    // Your email account username
+password=password                   // Your email account clear-text password
+emailAddress=someone@somewhere.org  // Your email address</source>            
+        
+    
+            <p>
+                Configuration complete! Next are <a href="arguments.html" alt="arguments">Command line arguments</a>.
+            </p>
+        </section>	     
+        
+    </body>
+</document>

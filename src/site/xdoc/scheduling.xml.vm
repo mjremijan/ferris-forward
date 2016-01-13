@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+	<properties>
+		<title>Ferris Attachment</title>
+		<author email="mjremijan@yahoo.com">Michael Remijan</author>
+	</properties>
+
+	<body>
+		<section name="Scheduling to Run">
+			<p>
+				<b>Linux</b>
+			</p>
+			<p>
+				Use <code>CRON</code> to schedule the running of the application.
+			</p>
+			<source># Run Attachment every weekday morning
+30 6 * * mon,tue,wed,thu,fri /home/username/${project.build.finalName}-${ferrisLinuxAssemblyId}/bin/start-attachment.sh -unsent /tmp/unsent -sent /tmp/sent -to someone@somewhere.com -subject "An attachment" &gt; /dev/null 2&gt;&amp;1</source>
+			<p>
+				Happy attaching!
+			</p>
+		</section>
+	</body>
+</document>
