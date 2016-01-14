@@ -63,7 +63,7 @@ public class EmailFolder {
             this.folder.open(Folder.READ_WRITE);
             
             Message[] msgArray = folder.getMessages();
-            if (messages == null || msgArray.length == 0) {
+            if (msgArray == null || msgArray.length == 0) {
                 messages = Collections.emptyList();
             } else {
                 messages = Arrays.asList(msgArray)
