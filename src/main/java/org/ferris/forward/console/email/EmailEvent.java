@@ -13,18 +13,18 @@ public class EmailEvent {
     public static final int GET_RULES = 10;
     public static final int PRINT_RULES = 15;
     
-    public static final int GET_MESSAGES = 20;
+    public static final int GET_FOLDER = 20;
     public static final int PRINT_MESSAGES = 25;
 
     public static final int FIND_MATCHES_TO_RULES = 30;
     public static final int PRINT_MATCHES_TO_RULES = 35;
     
-    public static final int FORWARD_EMAIL_MESSAGES = 60;
-    
-    public static final int DELETE_INBOX_EMAILS = 70;
+    public static final int FORWARD_EMAIL_MESSAGES = 60;    
+    public static final int DELETE_FORWARDED_EMAIL_MESSAGES = 70;
+    public static final int CLOSE = 80;
 
     protected List<Rule> rules;
-    protected List<EmailMessage> messages;
+    protected EmailFolder folder;
     protected Map<Rule, List<EmailMessage>> matches;
 
     public void setRules(List<Rule> rules) {
@@ -35,12 +35,12 @@ public class EmailEvent {
         return this.rules;
     }
 
-    void setMessages(List<EmailMessage> messages) {
-        this.messages = messages;
+    public void setFolder(EmailFolder folder) {
+        this.folder = folder;
     }
 
-    public List<EmailMessage> getMessages() {
-        return this.messages;
+    public EmailFolder getFolder() {
+        return this.folder;
     }
 
     public Map<Rule, List<EmailMessage>> getMatches() {

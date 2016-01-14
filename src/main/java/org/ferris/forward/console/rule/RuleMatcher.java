@@ -30,7 +30,7 @@ public class RuleMatcher {
         
         for (Rule rule : evnt.getRules()) {
             matches.put(rule, new LinkedList<>());
-            for (EmailMessage message : evnt.getMessages()) {
+            for (EmailMessage message : evnt.getFolder().getMessages()) {
                 if (rule.matches(message)) {
                     matches.get(rule).add(message);
                 }

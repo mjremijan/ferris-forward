@@ -3,6 +3,7 @@ package org.ferris.forward.console.email;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
+import javax.mail.MessagingException;
 import org.apache.log4j.Logger;
 import static org.ferris.forward.console.email.EmailEvent.PRINT_MATCHES_TO_RULES;
 import static org.ferris.forward.console.email.EmailEvent.PRINT_MESSAGES;
@@ -21,13 +22,13 @@ public class EmailPrinter {
     
     public void printAllEmailMessages (
         @Observes @Priority(PRINT_MESSAGES) EmailEvent evnt
-    ) { 
+    ) throws MessagingException { 
         log.info("ENTER");
         log.info(String.format(
-            "Message count: %d", evnt.getMessages().size()));
+            "Message count: %d", evnt.getFolder().getMessages().size()));
         
         AtomicInteger cnt = new AtomicInteger(1);
-        evnt.getMessages().forEach(
+        evnt.getFolder().getMessages().forEach(
             em ->                 
                 log.info(
                     String.format(

@@ -3,9 +3,9 @@ package org.ferris.forward.console.email;
 import javax.activation.DataHandler;
 import javax.enterprise.context.Dependent;
 import javax.mail.Address;
+import javax.mail.Flags;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import org.apache.log4j.Logger;
 
 /**
  *
@@ -14,27 +14,25 @@ import org.apache.log4j.Logger;
 @Dependent
 public class EmailMessage {
 
-    protected Logger log;
-
-    private Message message;
-
-    public EmailMessage setMessage(Message m) {
+    protected Message message;
+    
+    protected boolean forwarded; 
+    
+    public EmailMessage(Message m) {
         this.message = m;
-        return this;
+        this.forwarded = false;
     }
 
     public String getSubject() {
-        String subject = "";
         try {
-            subject = message.getSubject();
+            String subject = message.getSubject();
             if (subject == null) {
                 subject = "";
             }
             return subject;
-        } catch (MessagingException e) {
-            log.warn("Problem getting subject", e);
+        } catch (Exception e) {
+            throw new RuntimeException("Problem getting subject", e);
         }
-        return subject;
 
 //        String subject = "";
 //        
@@ -79,6 +77,22 @@ public class EmailMessage {
             return message.getDataHandler();
         } catch (MessagingException e) {
             throw new RuntimeException("Problem getting DataHandler", e);
+        }
+    }
+    
+    public void setForwarded(boolean b) {
+        this.forwarded = b;
+    }
+    
+    public boolean isForwarded() {        
+        return this.forwarded;
+    }
+    
+    public void expunge() {
+        try {
+            this.message.setFlag(Flags.Flag.DELETED, true);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage(),e);
         }
     }
 }
