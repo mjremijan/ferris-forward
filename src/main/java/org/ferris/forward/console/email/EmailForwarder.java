@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Date;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
-import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -17,6 +16,7 @@ import javax.mail.internet.MimeMultipart;
 import org.apache.log4j.Logger;
 import static org.ferris.forward.console.email.EmailEvent.FORWARD_EMAIL_MESSAGES;
 import org.ferris.forward.console.mail.Smtp;
+import org.ferris.forward.console.message.MessageProperty;
 import org.ferris.forward.console.retry.ExceptionRetry;
 import org.ferris.forward.console.rule.Rule;
 import org.jboss.weld.experimental.Priority;
@@ -32,6 +32,9 @@ public class EmailForwarder {
     @Inject @EmailProperty("emailAddress")
     protected String emailAddress;
     
+    @Inject @MessageProperty("version")
+    protected String versionTemplate;    
+    
     @Inject @Smtp
     protected Session smtp;
     
@@ -44,15 +47,6 @@ public class EmailForwarder {
             return;
         } 
         
-//        // This is test code that only forwards 1 message        
-//        Map.Entry<Rule, List<EmailMessage>> entry 
-//            = evnt.getMatches().entrySet().iterator().next();
-//        try {
-//            forward(entry.getKey(), entry.getValue().get(0));
-//        } catch (MessagingException | IOException ex) { 
-//            log.warn("oops", ex);
-//        }
-
         evnt.getMatches().entrySet().forEach(a -> {            
             a.getValue().forEach(
                 b -> { 
@@ -72,20 +66,21 @@ public class EmailForwarder {
     throws MessagingException, IOException
     {
         log.info(String.format("ENTER"));
-        
-//        // Original part
-//        BodyPart originalMessagePart = new MimeBodyPart();
-//        originalMessagePart.setText("Original message:\n\n");
-        
+                
         // Forwarded part
-        BodyPart forwardMessagePart = new MimeBodyPart();
-        forwardMessagePart.setDataHandler(emailMessageToForward.getDataHandler());
+        MimeBodyPart forwardedBodyPart = new MimeBodyPart();
+        forwardedBodyPart.setDataHandler(emailMessageToForward.getDataHandler());
+        
+        
+        // Version part
+        MimeBodyPart versionNumberPart = new MimeBodyPart();
+        versionNumberPart.setText(versionTemplate, "US-ASCII", "html");        
         
         // Multipart to combine all parts
-        Multipart content = new MimeMultipart();
-        {
-            //content.addBodyPart(originalMessagePart);
-            content.addBodyPart(forwardMessagePart);
+        Multipart content = new MimeMultipart("related");
+        {            
+            content.addBodyPart(forwardedBodyPart);
+            content.addBodyPart(versionNumberPart);
         }
         
         

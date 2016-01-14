@@ -74,7 +74,7 @@ public class SessionProducer
             props.setProperty("mail.smtp.auth", "true");
             props.setProperty("mail.smtp.port", smtpPort);
             
-            smtp = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+            smtp = Session.getInstance(props, new javax.mail.Authenticator() {
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
                     return new PasswordAuthentication(username, password);

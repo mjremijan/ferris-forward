@@ -46,8 +46,7 @@ public class EmailFolderHandler {
         log.info("ENTER");
         if (evnt.getRules().isEmpty()) {
             evnt.setFolder(new EmailFolder());
-        } else {
-            log.debug(String.format("Popping from folder \"%s\"", folder));
+        } else {            
             Store store = pop.getStore();
             store.connect(username, password);
             Folder inbox = store.getFolder(folder);
