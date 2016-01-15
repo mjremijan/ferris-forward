@@ -4,28 +4,29 @@
           xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
     <properties>
-        <title>Ferris Attachment</title>
+        <title>Ferris Forward</title>
         <author email="mjremijan@yahoo.com">Michael Remijan</author>
     </properties>
 
     <body>
         <section name="Configuration">
             <p>
-                Configuring Attachment is not that difficult.  This page documents 
+                Configuring Forward is not that difficult.  This page documents 
                 everything you need to do.
             </p>
         </section>
 		
-        <section name="JRE">
+        <section name="Java Runtime Environment (JRE)">
             <p>
-                Attachment requires Java 8. The Linux download comes embedded
-                with a Java 8 JRE, so Attachment does not depend on the
-                system-level JRE to run.  
+                Forward requires Java 8. Both the Windows and Linux downloads 
+                come embedded with a Java 8 JRE, so Forward does not depend on 
+                the system-level JRE to run.  
             </p>
             <p>
                 However, if you want to override the JRE that comes embedded
-                with Attachment you can do so by editing, in the <code>[ATTACHMENT_HOME]/bin/</code>
-                directory, the <code>start-attachment.sh</code> file.
+                with Forward you can do so by editing, in the <code>[FORWARD_HOME]/bin/</code>
+                directory, either the <code>start-forward.sh</code> file or
+                the <code>start-forward.bat</code> file.
             </p>            
         </section>
 		
@@ -36,28 +37,86 @@
             </p>
         </section>
 		
-        <section name="SMTP Account">
+        <section name="SMTP and POP Account">
             <p>
-                Attachment needs the SMTP information for your email provider. Each
-                email provider is different so how you get this information is 
-                up to you.  
+                Forward needs the SMTP and POP information for your email 
+                provider. Each email provider is different so how you get 
+                this information is up to you.  
             </p>
             <p>
-                In the <code>[ATTACHMENT_HOME]/conf/</code> directory, make a copy
+                In the <code>[FORWARD_HOME]/conf/</code> directory, make a copy
                 of <code>email(example).properties</code> as <code>email.properties</code>.
-                Edit <code>email.properties</code>, adding your SMTP account
+                Edit <code>email.properties</code>, adding your SMTP and POP account
                 details.
             </p>
             <source>
-host=smtp.somewhere.org             // Hostname of the SMTP server
-port=44                             // Port of the SMTP server
-username=someone                    // Your email account username
-password=password                   // Your email account clear-text password
-emailAddress=someone@somewhere.org  // Your email address</source>            
+# Hostname of the SMTP server
+host=smtp.somewhere.org
+                
+# Port of the SMTP server
+port=44
+
+# Your email account username
+username=someone
+
+# Your email account clear-text password                
+password=password
+
+# Your email address                
+emailAddress=Someone Special &lt;someone@somewhere.org&gt;
+
+# Hostname of the POP server
+pop3sHost=pop.somewhere.org
+
+# Port of the POP server
+pop3sPort=995
+
+# Name of the folder to POP, typically don't change this.
+pop3sFolder=INBOX</source>
+        </section>
         
+        
+        <section name="Forwarding rules">
+            <p>
+                Forward uses an XML document to store its fowarding rules.  
+                In the <code>[FORWARD_HOME]/conf/</code> directory, make a copy
+                of <code>rules(example).xml</code> as <code>rules.xml</code>.
+                Edit <code>rules.xml</code>, adding your forwarding rules.
+            </p>   
+            <p>
+                This is complete documentation of the XML document.
+            </p>
+            <source>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;Rules&gt;
+    &lt;!-- 
+        MATCH 'from address' AND 'subject'
+    --&gt;
+    &lt;Rule&gt;
+        &lt;ForwardAddress&gt;Real Name &amp;lt;forward.to.me@somewhere.org&amp;gt;&lt;/ForwardAddress&gt;
+        &lt;FromPattern&gt;^regular.*expression[pattern](match)&lt;/FromPattern&gt;
+        &lt;SubjectPattern&gt;^regular.*expression[pattern](match)&lt;/SubjectPattern&gt;
+    &lt;/Rule&gt;
+    
+    &lt;!--
+        MATCH 'from address' only
+    --&gt;
+    &lt;Rule&gt;
+        &lt;ForwardAddress&gt;Real Name &amp;lt;forward.to.me@somewhere.org&amp;gt;&lt;/ForwardAddress&gt;
+        &lt;FromPattern&gt;^regular.*expression[pattern](match)&lt;/FromPattern&gt;
+    &lt;/Rule&gt;
+    
+    &lt;!-- 
+        MATCH 'subject' only
+    --&gt;
+    &lt;Rule&gt;
+        &lt;ForwardAddress&gt;Real Name &amp;lt;forward.to.me@somewhere.org&amp;gt;&lt;/ForwardAddress&gt;
+        &lt;SubjectPattern&gt;^regular.*expression[pattern](match)&lt;/SubjectPattern&gt;
+    &lt;/Rule&gt;
+&lt;/Rules&gt;</source> 
     
             <p>
-                Configuration complete! Next are <a href="arguments.html" alt="arguments">Command line arguments</a>.
+                Configuration complete! Next is <a href="scheduling.html" alt="scheduling">Scheduling to run!</a>.
             </p>
         </section>	     
         

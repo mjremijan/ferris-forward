@@ -3,17 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
  
     <bannerLeft>
-        <!-- <name>Ferris Attachment</name> -->
+        <!-- <name>Ferris Forward</name> -->
         <src>images/web-banner.png</src>
         <href>index.html</href>
     </bannerLeft>
     
-    <!-- bannerRight>
-        <name>Ferris Tray</name>
-        <src>images/banner-right.png</src>
-        <href>index.html</href>
-    </bannerRight -->
-	
     <skin>
         <groupId>org.apache.maven.skins</groupId>
         <artifactId>maven-fluido-skin</artifactId>
@@ -32,11 +26,10 @@
             <link rel="stylesheet" href="css/ferris.css" type="text/css"/>
         </head>
 
-        <menu name="Ferris Attachment">
+        <menu name="Ferris Forward">
             <item name="About" href="index.html" />
             <item name="Installation" href="installation.html" />
-            <item name="Configuration" href="configuration.html" />           
-			<item name="Command line arguments" href="arguments.html" />
+            <item name="Configuration" href="configuration.html" />                       
             <item name="Logging" href="logging.html" />                                 
             <item name="Scheduling to Run" href="scheduling.html" />               
         </menu>

@@ -4,7 +4,7 @@
           xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
     <properties>
-        <title>Ferris Attachment</title>
+        <title>Ferris Forward</title>
         <author email="mjremijan@yahoo.com">Michael Remijan</author>
     </properties>
 
@@ -17,12 +17,16 @@
     <body>
         <section name="">
             <div id="twStart">
-                <h2>Start Using Attachment</h2>
-                <span class="nav-header">A file attachement emailer</span>
+                <h2>Start Using Forward</h2>
+                <span class="nav-header">A Yahoo! email forwarder</span>
+                <a href="${project.scm.url}/releases/download/${project.build.finalName}/${project.build.finalName}-${ferrisWindowsAssemblyId}.zip">
+                    <img src="images/windows-icon.png" />Download for Windows
+                </a>                
+		&nbsp; &nbsp; &nbsp; &nbsp;
                 <a href="${project.scm.url}/releases/download/${project.build.finalName}/${project.build.finalName}-${ferrisLinuxAssemblyId}.tar.gz">
                     <img src="images/linux-icon.png" />Download for Linux
                 </a>
-				&nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp; &nbsp;
                 <a href="${project.scm.url}">
                     <img src="images/octocat-icon.png" />Visit on GitHub
                 </a>
@@ -31,21 +35,14 @@
 		
         <section name="About">
             <p>
-                Attachment is a simple application designed to send an email with a file as an attachment. 
-				When you start the application, use the <code>-unsent</code> command line argument to
-				specify which directory contains files which have NOT been emailed yet.  Similarly, use
-				the <code>-sent</code> command line argument to specify where to put a file AFTER it has 
-				been emailed.  Refer to the <a href="arguments.html" alt="arguments">Command line arguments</a> 
-				page for more details.
-            </p>
-			<p>
-				This project was originally designed and developed to work with Ferris Reading. 
-				Reading takes a large PDF document and splits it into any number of smaller documents so
-				it's reasy to real the large PDF by breaking it into more managable smaller pieces. 
-				Question is how do you get those smaller pieces to you to read? That's what Attachment
-				is for. Attachment is scheduled to run each morning to email one of those smaller
-				pieces. Of course this is only one possible use for Attachment.
-			</p>
+                Forward is a simple application designed to forward Yahoo! email
+                to another email address.  Yahoo! email filters do not have
+                a fowarding option, only a move-to-folder option.  So this
+                application will loop over all the messages in your inbox, find
+                messages matching your rules, forward the messages matching a
+                rule to the email address configured for that rule, then delete
+                the message from your inbox.               
+            </p>            
         </section>
     </body>
 </document>

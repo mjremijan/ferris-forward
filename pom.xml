@@ -66,7 +66,7 @@
         <!-- Don't use the "." character for the property names. The site plugin
         cannot handle user-defined property names that contain "." -->
         <ferrisJacocoVersion>0.7.5.201505241946</ferrisJacocoVersion>
-		<ferrisWindowsAssemblyId>windows-x86-64-jre</ferrisWindowsAssemblyId>
+        <ferrisWindowsAssemblyId>windows-x86-64-jre</ferrisWindowsAssemblyId>
         <ferrisLinuxAssemblyId>linux-x86-64-jre</ferrisLinuxAssemblyId>
     </properties>
 
