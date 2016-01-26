@@ -4,7 +4,7 @@
           xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
     <properties>
-        <title>Ferris Attachment</title>
+        <title>Ferris Forward</title>
         <author email="mjremijan@yahoo.com">Michael Remijan</author>
     </properties>
 
@@ -14,9 +14,8 @@
                 All logging is done by <code>Log4j</code>.  
             </p>
             <p>
-                In the <code>[ATTACHMENT_HOME]/conf/</code>
-                directory, the <code>log4j.properties</code> file is how you 
-                configure the logging.
+                Configure logging by editing 
+                <code>[FORWARD_HOME]/conf/log4j.properties</code>.
             </p>           
         </section>
     </body>

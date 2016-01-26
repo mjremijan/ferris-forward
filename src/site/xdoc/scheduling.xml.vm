@@ -15,7 +15,7 @@
             </p>
             <p>
                 Use the Task Scheduler to schedule running the 
-                <code>[FORWARD_HOME]/bin/start-forward.bat</code> file. 
+                <code>[FORWARD_HOME]\bin\start-forward.bat</code> file. 
                 Microsoft has a <a href="http://windows.microsoft.com/en-US/windows/schedule-task#1TC=windows-7">Schedule a task</a>
                 page with all the details.				
             </p>
@@ -29,7 +29,7 @@
 # Run Forward every 30 minutes
 0,30 * * * * /home/username/[FORWARD_HOME]/bin/start-forward.sh &gt;&gt; /dev/null 2&gt;&amp;1</source>
             <p>
-                Happy forwarding
+                Happy forwarding!
             </p>
         </section>
     </body>

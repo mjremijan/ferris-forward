@@ -83,6 +83,17 @@
                 <version>${project.version}</version>
                 <classifier>linux</classifier>
             </dependency>
+            <!--
+             | This refers to the Windows specific JAR file created
+             | during the packaging phase.  The Assembly needs this
+             | dependency defined so it can find the JAR file.
+            -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>${project.artifactId}</artifactId>
+                <version>${project.version}</version>
+                <classifier>windows</classifier>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 	
@@ -108,7 +119,7 @@
                         <id>default-jar</id>
                         <phase/>
                     </execution>
-					<!--
+                    <!--
                      | Windows specific JAR
                      | - Path to ..\conf\
                     -->
@@ -127,7 +138,7 @@
                                 <addMavenDescriptor>false</addMavenDescriptor>
                                 <manifest>
                                     <addClasspath>true</addClasspath>
-									<mainClass>org.ferris.forward.console.main.Main</mainClass>
+                                    <mainClass>org.ferris.forward.console.main.Main</mainClass>
                                     <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                                 </manifest>
                             </archive>
@@ -367,7 +378,7 @@
                         <artifactId>maven-assembly-plugin</artifactId>
                         <version>2.5.4</version>
                         <executions>
-							<execution>
+                            <execution>
                                 <id>windows-jre-assembly</id>
                                 <phase>package</phase>
                                 <goals>
@@ -399,7 +410,7 @@
         </profile>
 		
 		
-		<profile>
+        <profile>
             <id>windows-jre-unzip</id>
             <build>
                 <plugins>                    
@@ -489,6 +500,8 @@
                             <report>project-team</report>
                             <report>summary</report>
                             <report>license</report>
+                            <report>issue-tracking</report>
+                            <report>scm</report>
                         </reports>
                     </reportSet>
                 </reportSets>

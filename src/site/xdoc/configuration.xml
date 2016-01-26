@@ -24,9 +24,11 @@
             </p>
             <p>
                 However, if you want to override the JRE that comes embedded
-                with Forward you can do so by editing, in the <code>[FORWARD_HOME]/bin/</code>
-                directory, either the <code>start-forward.sh</code> file or
-                the <code>start-forward.bat</code> file.
+                with Forward, you can do so by editing either the 
+                <code>[FORWARD_HOME]/bin/start-forward.sh</code>
+                or the 
+                <code>[FORWARD_HOME]\bin\start-forward.bat</code> 
+                file.
             </p>            
         </section>
 		
@@ -44,8 +46,10 @@
                 this information is up to you.  
             </p>
             <p>
-                In the <code>[FORWARD_HOME]/conf/</code> directory, make a copy
-                of <code>email(example).properties</code> as <code>email.properties</code>.
+                Copy 
+                <code>[FORWARD_HOME]/conf/email(example).properties</code> 
+                as
+                <code>[FORWARD_HOME]/conf/email.properties</code>.
                 Edit <code>email.properties</code>, adding your SMTP and POP account
                 details.
             </p>
@@ -79,12 +83,14 @@ pop3sFolder=INBOX</source>
         <section name="Forwarding rules">
             <p>
                 Forward uses an XML document to store its fowarding rules.  
-                In the <code>[FORWARD_HOME]/conf/</code> directory, make a copy
-                of <code>rules(example).xml</code> as <code>rules.xml</code>.
+                Copy 
+                <code>[FORWARD_HOME]/conf/rules(example).xml</code> 
+                as 
+                <code>[FORWARD_HOME]/conf/rules.xml</code>.
                 Edit <code>rules.xml</code>, adding your forwarding rules.
             </p>   
             <p>
-                This is complete documentation of the XML document.
+                This complete documentation of the XML document.
             </p>
             <source>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;

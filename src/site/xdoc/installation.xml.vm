@@ -14,7 +14,7 @@
                 <b>Windows</b>
             </p>
             <p>
-                Unzip <code>${project.build.finalName}-${ferrisLinuxAssemblyId}.zip</code>.
+                Unzip <code>${project.build.finalName}-${ferrisWindowsAssemblyId}.zip</code>.
             </p>
             <p>
                 <b>Linux</b>
