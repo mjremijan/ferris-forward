@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../resources/report.css" type="text/css"/><link rel="shortcut icon" href="../resources/report.gif" type="image/gif"/><title>SessionProducer.java</title><link rel="stylesheet" href="../resources/prettify.css" type="text/css"/><script type="text/javascript" src="../resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ferris-forward</a> &gt; <a href="index.source.html" class="el_package">org.ferris.forward.console.mail</a> &gt; <span class="el_source">SessionProducer.java</span></div><h1>SessionProducer.java</h1><pre class="source lang-java linenums">package org.ferris.forward.console.mail;
+
+import java.util.Properties;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import org.apache.log4j.Logger;
+import org.ferris.forward.console.email.EmailProperty;
+import org.ferris.forward.console.log4j.Log4jRollingFileAppenderPrintStream;
+import org.ferris.forward.console.retry.ExceptionRetry;
+
+/**
+ *
+ * @author Michael Remijan mjremijan@yahoo.com @mjremijan
+ */
+@ApplicationScoped
+<span class="nc" id="L20">public class SessionProducer </span>
+{
+    @Inject
+    protected Logger log;
+    
+    @Inject @EmailProperty(&quot;pop3sHost&quot;)
+    protected String popHost;
+    
+    @Inject @EmailProperty(&quot;pop3sPort&quot;)
+    protected String popPort;
+    
+    @Inject @EmailProperty(&quot;username&quot;)
+    protected String username;
+    
+    @Inject @EmailProperty(&quot;password&quot;)
+    protected String password;     
+    
+    @Inject @EmailProperty(&quot;host&quot;)
+    protected String smtpHost;
+    
+    @Inject @EmailProperty(&quot;port&quot;)
+    protected String smtpPort;
+    
+    @Inject
+    Log4jRollingFileAppenderPrintStream printStream;
+    
+    protected Session pop;    
+    protected Session smtp;
+    
+    @Produces @Pop
+    @ExceptionRetry
+    public Session getPopSession() {
+<span class="nc" id="L52">        log.info(&quot;ENTER&quot;);</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (pop == null) {</span>
+<span class="nc" id="L54">            Properties props = new Properties();</span>
+<span class="nc" id="L55">            props.put(&quot;mail.host&quot;, popHost);</span>
+<span class="nc" id="L56">            props.put(&quot;mail.store.protocol&quot;, &quot;pop3s&quot;);</span>
+<span class="nc" id="L57">            props.put(&quot;mail.pop3s.auth&quot;, &quot;true&quot;);</span>
+<span class="nc" id="L58">            props.put(&quot;mail.pop3s.port&quot;, popPort);</span>
+<span class="nc" id="L59">            pop = Session.getDefaultInstance(props, null);</span>
+        }        
+<span class="nc" id="L61">        return pop;</span>
+    }
+    
+    @Produces @Smtp
+    @ExceptionRetry
+    protected Session getSession() throws MessagingException {
+<span class="nc" id="L67">        log.info(&quot;ENTER&quot;);</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        if(smtp == null)</span>
+        {
+<span class="nc" id="L70">            Properties props = new Properties();</span>
+<span class="nc" id="L71">            props.setProperty(&quot;mail.smtp.host&quot;, smtpHost);</span>
+<span class="nc" id="L72">            props.setProperty(&quot;mail.smtp.socketFactory.port&quot;, smtpPort);</span>
+<span class="nc" id="L73">            props.setProperty(&quot;mail.smtp.socketFactory.class&quot;, &quot;javax.net.ssl.SSLSocketFactory&quot;);</span>
+<span class="nc" id="L74">            props.setProperty(&quot;mail.smtp.auth&quot;, &quot;true&quot;);</span>
+<span class="nc" id="L75">            props.setProperty(&quot;mail.smtp.port&quot;, smtpPort);</span>
+            
+<span class="nc" id="L77">            smtp = Session.getInstance(props, new javax.mail.Authenticator() {</span>
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+<span class="nc" id="L80">                    return new PasswordAuthentication(username, password);</span>
+                }
+            });
+<span class="nc" id="L83">            smtp.setDebug(true);</span>
+<span class="nc" id="L84">            smtp.setDebugOut(printStream);</span>
+        }
+        
+<span class="nc" id="L87">        return smtp;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -1,0 +1,9 @@
+org.ferris.forward.console.application
+org.ferris.forward.console.conf
+org.ferris.forward.console.email
+org.ferris.forward.console.log4j
+org.ferris.forward.console.mail
+org.ferris.forward.console.main
+org.ferris.forward.console.message
+org.ferris.forward.console.retry
+org.ferris.forward.console.rule

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../resources/report.css" type="text/css"/><link rel="shortcut icon" href="../resources/report.gif" type="image/gif"/><title>RuleMatcher.java</title><link rel="stylesheet" href="../resources/prettify.css" type="text/css"/><script type="text/javascript" src="../resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ferris-forward</a> &gt; <a href="index.source.html" class="el_package">org.ferris.forward.console.rule</a> &gt; <span class="el_source">RuleMatcher.java</span></div><h1>RuleMatcher.java</h1><pre class="source lang-java linenums">package org.ferris.forward.console.rule;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import javax.enterprise.event.Observes;
+import javax.inject.Inject;
+import org.apache.log4j.Logger;
+import org.ferris.forward.console.email.EmailEvent;
+import org.ferris.forward.console.email.EmailMessage;
+import org.jboss.weld.experimental.Priority;
+
+/**
+ *
+ * @author Michael Remijan mjremijan@yahoo.com @mjremijan
+ */
+<span class="nc" id="L18">public class RuleMatcher {</span>
+    
+    @Inject
+    protected Logger log;
+    
+    protected void findMatchesToRules(
+        @Observes @Priority(EmailEvent.FIND_MATCHES_TO_RULES) EmailEvent evnt
+    ) {
+<span class="nc" id="L26">        log.info(&quot;ENTER&quot;);</span>
+        
+<span class="nc" id="L28">        Map&lt;Rule, List&lt;EmailMessage&gt;&gt; matches</span>
+            = new HashMap&lt;&gt;();
+        
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        for (Rule rule : evnt.getRules()) {</span>
+<span class="nc" id="L32">            matches.put(rule, new LinkedList&lt;&gt;());</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            for (EmailMessage message : evnt.getFolder().getMessages()) {</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">                if (rule.matches(message)) {</span>
+<span class="nc" id="L35">                    matches.get(rule).add(message);</span>
+                }
+<span class="nc" id="L37">            }</span>
+<span class="nc" id="L38">        }</span>
+        
+<span class="nc" id="L40">        evnt.setMatches(matches);</span>
+<span class="nc" id="L41">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

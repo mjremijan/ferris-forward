@@ -1,0 +1,32 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+ferris-forward,org.ferris.forward.console.retry,ExceptionRetryInterceptor,44,0,2,0,10,0,3,0,2,0
+ferris-forward,org.ferris.forward.console.conf,ConfDirectory,12,0,0,0,2,0,1,0,1,0
+ferris-forward,org.ferris.forward.console.rule,PatternAdapter,27,0,2,0,8,0,4,0,3,0
+ferris-forward,org.ferris.forward.console.rule,Rule,95,0,14,0,23,0,16,0,9,0
+ferris-forward,org.ferris.forward.console.rule,Rules,13,0,0,0,5,0,3,0,3,0
+ferris-forward,org.ferris.forward.console.rule,RulesFile,5,0,0,0,2,0,1,0,1,0
+ferris-forward,org.ferris.forward.console.rule,RuleMatcher,58,0,6,0,12,0,5,0,2,0
+ferris-forward,org.ferris.forward.console.rule,RuleHandler,54,0,2,0,13,0,4,0,3,0
+ferris-forward,org.ferris.forward.console.rule,RulePrinter,40,0,0,0,5,0,3,0,3,0
+ferris-forward,org.ferris.forward.console.rule,InternetAddressAdapter,29,0,2,0,8,0,4,0,3,0
+ferris-forward,org.ferris.forward.console.log4j,Log4jLoggerProducer,8,0,0,0,2,0,2,0,2,0
+ferris-forward,org.ferris.forward.console.log4j,Log4jRollingFileAppenderPrintStream,4,0,0,0,2,0,1,0,1,0
+ferris-forward,org.ferris.forward.console.log4j,Log4jRollingFileAppenderPrintStreamProducer,28,0,4,0,9,0,4,0,2,0
+ferris-forward,org.ferris.forward.console.log4j,Log4jRollingFileAppender,58,0,2,0,14,0,4,0,3,0
+ferris-forward,org.ferris.forward.console.email,EmailEvent,24,0,0,0,10,0,7,0,7,0
+ferris-forward,org.ferris.forward.console.email,EmailFolder.DefaultHolder,65,0,4,0,20,0,8,0,6,0
+ferris-forward,org.ferris.forward.console.email,EmailForwarder,153,0,2,0,34,0,6,0,5,0
+ferris-forward,org.ferris.forward.console.email,EmailPropertyProducer,32,0,0,0,6,0,2,0,2,0
+ferris-forward,org.ferris.forward.console.email,EmailFolderHandler,57,0,2,0,15,0,5,0,4,0
+ferris-forward,org.ferris.forward.console.email,EmailFolder.EmptyHolder,10,0,0,0,4,0,4,0,4,0
+ferris-forward,org.ferris.forward.console.email,EmailPrinter,142,0,4,0,25,0,9,0,7,0
+ferris-forward,org.ferris.forward.console.email,EmailForwarder.new InternetAddress() {...},10,0,0,0,1,0,1,0,1,0
+ferris-forward,org.ferris.forward.console.email,EmailMessage,84,0,6,0,28,0,10,0,7,0
+ferris-forward,org.ferris.forward.console.email,EmailFolder,56,0,0,0,17,0,5,0,5,0
+ferris-forward,org.ferris.forward.console.message,MessagePropertyProducer,32,0,0,0,6,0,2,0,2,0
+ferris-forward,org.ferris.forward.console.mail,SessionProducer,103,0,4,0,22,0,5,0,3,0
+ferris-forward,org.ferris.forward.console.mail,SessionProducer.new Authenticator() {...},16,0,0,0,2,0,2,0,2,0
+ferris-forward,org.ferris.forward.console.main,Main,34,0,0,0,10,0,3,0,3,0
+ferris-forward,org.ferris.forward.console.application,ApplicationDirectory,4,0,0,0,2,0,1,0,1,0
+ferris-forward,org.ferris.forward.console.application,ApplicationSubDirectory,28,0,0,0,2,0,4,0,4,0
+ferris-forward,org.ferris.forward.console.application,ApplicationDirectoryProducer,28,0,0,0,7,0,2,0,2,0

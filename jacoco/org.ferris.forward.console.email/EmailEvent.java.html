@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../resources/report.css" type="text/css"/><link rel="shortcut icon" href="../resources/report.gif" type="image/gif"/><title>EmailEvent.java</title><link rel="stylesheet" href="../resources/prettify.css" type="text/css"/><script type="text/javascript" src="../resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ferris-forward</a> &gt; <a href="index.source.html" class="el_package">org.ferris.forward.console.email</a> &gt; <span class="el_source">EmailEvent.java</span></div><h1>EmailEvent.java</h1><pre class="source lang-java linenums">package org.ferris.forward.console.email;
+
+import java.util.List;
+import java.util.Map;
+import org.ferris.forward.console.rule.Rule;
+
+/**
+ *
+ * @author Michael Remijan mjremijan@yahoo.com @mjremijan
+ */
+<span class="nc" id="L11">public class EmailEvent {</span>
+
+    public static final int GET_RULES = 10;
+    public static final int PRINT_RULES = 15;
+    
+    public static final int GET_FOLDER = 20;
+    public static final int PRINT_MESSAGES = 25;
+
+    public static final int FIND_MATCHES_TO_RULES = 30;
+    public static final int PRINT_MATCHES_TO_RULES = 35;
+    
+    public static final int FORWARD_EMAIL_MESSAGES = 60;    
+    public static final int DELETE_FORWARDED_EMAIL_MESSAGES = 70;
+    public static final int CLOSE = 80;
+
+    protected List&lt;Rule&gt; rules;
+    protected EmailFolder folder;
+    protected Map&lt;Rule, List&lt;EmailMessage&gt;&gt; matches;
+
+    public void setRules(List&lt;Rule&gt; rules) {
+<span class="nc" id="L31">        this.rules = rules;</span>
+<span class="nc" id="L32">    }</span>
+
+    public List&lt;Rule&gt; getRules() {
+<span class="nc" id="L35">        return this.rules;</span>
+    }
+
+    public void setFolder(EmailFolder folder) {
+<span class="nc" id="L39">        this.folder = folder;</span>
+<span class="nc" id="L40">    }</span>
+
+    public EmailFolder getFolder() {
+<span class="nc" id="L43">        return this.folder;</span>
+    }
+
+    public Map&lt;Rule, List&lt;EmailMessage&gt;&gt; getMatches() {
+<span class="nc" id="L47">        return matches;</span>
+    }
+
+    public void setMatches(Map&lt;Rule, List&lt;EmailMessage&gt;&gt; matches) {
+<span class="nc" id="L51">        this.matches = matches;</span>
+<span class="nc" id="L52">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
