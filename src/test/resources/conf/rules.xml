@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Rules>
+    <!-- 
+        MATCH 'from address' AND 'subject'
+    -->
+    <Rule>
+        <ForwardAddress>Real Name &lt;forward.to.me@somewhere.org&gt;</ForwardAddress>
+        <FromPattern>^regular.*expression[pattern](match)</FromPattern>
+        <SubjectPattern>^regular.*expression[pattern](match)</SubjectPattern>
+    </Rule>
+    
+    <!--
+        MATCH 'from address' only
+    -->
+    <Rule>
+        <ForwardAddress>Real Name &lt;forward.to.me@somewhere.org&gt;</ForwardAddress>
+        <FromPattern>^regular.*expression[pattern](match)</FromPattern>
+    </Rule>
+    
+    <!-- 
+        MATCH 'subject' only
+    -->
+    <Rule>
+        <ForwardAddress>Real Name &lt;forward.to.me@somewhere.org&gt;</ForwardAddress>
+        <SubjectPattern>^regular.*expression[pattern](match)</SubjectPattern>
+    </Rule>
+    
+    <!-- 
+        MATCH 'from address' AND 'subject'
+        DO NOT DELETE
+    -->
+    <Rule>
+        <ForwardAddress>Real Name &lt;forward.to.me@somewhere.org&gt;</ForwardAddress>
+        <FromPattern>^regular.*expression[pattern](match)</FromPattern>
+        <SubjectPattern>^regular.*expression[pattern](match)</SubjectPattern>
+        <DeleteMessage>false</DeleteMessage>
+    </Rule>
+</Rules>

@@ -17,3 +17,4 @@ buildNumber.properties
 /src/main/assemblies/conf/distribution.properties
 /src/main/assemblies/conf/newhtml.html
 /src/main/assemblies/conf/rules.xml
+/nbproject/

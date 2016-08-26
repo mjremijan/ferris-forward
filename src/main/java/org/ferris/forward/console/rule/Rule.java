@@ -13,32 +13,36 @@ import org.ferris.forward.console.email.EmailMessage;
  *
  * @author Michael Remijan mjremijan@yahoo.com @mjremijan
  */
-@XmlRootElement(name="Rule")
+@XmlRootElement(name = "Rule")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Rule {
-    
-    @XmlElement(name = "ForwardAddress", required = true)  
+
+    @XmlElement(name = "ForwardAddress", required = true)
     @XmlJavaTypeAdapter(InternetAddressAdapter.class)
     private InternetAddress to;
-    
+
     @XmlElement(name = "FromPattern")
     @XmlJavaTypeAdapter(PatternAdapter.class)
     private Pattern from;
-    
+
     @XmlElement(name = "SubjectPattern")
     @XmlJavaTypeAdapter(PatternAdapter.class)
     private Pattern subject;
 
+    @XmlElement(name = "DeleteMessage")
+    private Boolean delete;
+
+    public Rule() {
+        delete = Boolean.TRUE;
+    }
+
     @Override
     public String toString() {
         return String.format(
-            "[Rule: to=\"%s\" from=\"%s\" subject=\"%s\"]"
-            , (to == null) ? "<NULL>" : to.toString()
-            , (from == null) ? "<NULL>" : from.pattern()
-            , (subject == null) ? "<NULL>" : subject.pattern()
-        );        
+            "[Rule: to=\"%s\" from=\"%s\" subject=\"%s\" delete=\"%s\"]", (to == null) ? "<NULL>" : to.toString(), (from == null) ? "<NULL>" : from.pattern(), (subject == null) ? "<NULL>" : subject.pattern(), (delete == null) ? "<NULL>" : delete.toString()
+        );
     }
-    
+
     public InternetAddress getTo() {
         return to;
     }
@@ -46,7 +50,7 @@ public class Rule {
     public void setTo(InternetAddress to) {
         this.to = to;
     }
-    
+
     public Pattern getFrom() {
         return from;
     }
@@ -54,7 +58,7 @@ public class Rule {
     public void setFrom(Pattern from) {
         this.from = from;
     }
-    
+
     public Pattern getSubject() {
         return subject;
     }
@@ -62,20 +66,28 @@ public class Rule {
     public void setSubject(Pattern subject) {
         this.subject = subject;
     }
-    
+
     public boolean matches(EmailMessage message) {
         boolean fromMatches = true;
         if (getFrom() != null) {
             fromMatches
                 = getFrom().matcher(message.getFrom().toString()).matches();
         }
-        
+
         boolean subjectMatches = true;
-        if (getSubject()!= null) {
+        if (getSubject() != null) {
             subjectMatches
                 = getSubject().matcher(message.getSubject()).matches();
         }
-        
+
         return fromMatches && subjectMatches;
+    }
+
+    public Boolean getDelete() {
+        return delete;
+    }
+
+    public void setDelete(Boolean delete) {
+        this.delete = delete;
     }
 }

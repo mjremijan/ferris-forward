@@ -46,24 +46,37 @@ public class EmailFolderHandler {
         log.info("ENTER");
         if (evnt.getRules().isEmpty()) {
             evnt.setFolder(new EmailFolder());
-        } else {            
+        } else {
             Store store = pop.getStore();
             store.connect(username, password);
             Folder inbox = store.getFolder(folder);
             evnt.setFolder(new EmailFolder(store, inbox));
         }
     }
-    
-    
+
+
     @ExceptionRetry
     public void observeDeleteForwarded(
         @Observes @Priority(DELETE_FORWARDED_EMAIL_MESSAGES) EmailEvent evnt
     ) throws MessagingException {
         log.info("ENTER");
-        evnt.getFolder().expungeForwarded();
+
+        evnt.getMatches().entrySet()
+            .stream()
+            // Find the rules where the delete option is true
+            .filter(es -> es.getKey().getDelete().equals(Boolean.TRUE))
+            // Get a list of lists
+            .map(es -> es.getValue())
+            // Flatten the list of lists into a single list
+            .flatMap(m -> m.stream())
+            // Filter the list to only those successfully forwarded
+            .filter(m -> m.isForwarded())
+            // Mark to expunge
+            .forEach(m -> m.expunge())
+        ;
     }
-    
-    
+
+
     @ExceptionRetry
     public void observeClose(
         @Observes @Priority(CLOSE) EmailEvent evnt
