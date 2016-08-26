@@ -2,26 +2,35 @@
 <Rules>
     <!-- 
         MATCH 'from address' AND 'subject'
+        
+        Delete messages after forwarding them.
     -->
     <Rule>
         <ForwardAddress>Real Name &lt;forward.to.me@somewhere.org&gt;</ForwardAddress>
         <FromPattern>^regular.*expression[pattern](match)</FromPattern>
         <SubjectPattern>^regular.*expression[pattern](match)</SubjectPattern>
+        <DeleteMessage>true</DeleteMessage>
     </Rule>
     
     <!--
         MATCH 'from address' only
+        
+        Do not delete messages after forwarding them.
     -->
     <Rule>
         <ForwardAddress>Real Name &lt;forward.to.me@somewhere.org&gt;</ForwardAddress>
         <FromPattern>^regular.*expression[pattern](match)</FromPattern>
+        <DeleteMessage>false</DeleteMessage>
     </Rule>
     
     <!-- 
         MATCH 'subject' only
+        
+        Delete messages after forwarding them.
     -->
     <Rule>
         <ForwardAddress>Real Name &lt;forward.to.me@somewhere.org&gt;</ForwardAddress>
         <SubjectPattern>^regular.*expression[pattern](match)</SubjectPattern>
+        <DeleteMessage>true</DeleteMessage>
     </Rule>
 </Rules>
