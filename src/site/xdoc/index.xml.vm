@@ -18,7 +18,7 @@
         <section name="">
             <div id="twStart">
                 <h2>Start Using Forward</h2>
-                <span class="nav-header">A Yahoo! email forwarder</span>
+                <span class="nav-header">A POP email forwarder</span>
                 <a href="${project.scm.url}/releases/download/${project.build.finalName}/${project.build.finalName}-${ferrisWindowsAssemblyId}.zip">
                     <img src="images/windows-icon.png" />Download for Windows
                 </a>                
@@ -35,13 +35,14 @@
 		
         <section name="About">
             <p>
-                Forward is an application designed to forward Yahoo! email
-                to another email address.  Yahoo! email filters do not have
+                Forward is an application designed to forward POP email
+                to another email address.  I use Yahoo! email, and Yahoo! email filters 
+                do not have
                 a fowarding option, only a move-to-folder option.  So this
                 application will loop over all the messages in your inbox, find
                 messages matching your rules, forward the messages matching a
-                rule to the email address configured for that rule, then delete
-                the message from your inbox.               
+                rule to the email address configured for that rule, then 
+                - optionally - delete the message from your inbox.               
             </p>            
         </section>
     </body>
