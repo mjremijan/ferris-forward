@@ -97,27 +97,36 @@ pop3sFolder=INBOX</source>
 &lt;Rules&gt;
     &lt;!-- 
         MATCH 'from address' AND 'subject'
+        
+        Delete messages after forwarding them.
     --&gt;
     &lt;Rule&gt;
         &lt;ForwardAddress&gt;Real Name &amp;lt;forward.to.me@somewhere.org&amp;gt;&lt;/ForwardAddress&gt;
         &lt;FromPattern&gt;^regular.*expression[pattern](match)&lt;/FromPattern&gt;
         &lt;SubjectPattern&gt;^regular.*expression[pattern](match)&lt;/SubjectPattern&gt;
+        &lt;DeleteMessage&gt;true&lt;/DeleteMessage&gt;
     &lt;/Rule&gt;
     
     &lt;!--
         MATCH 'from address' only
+        
+        Do not messages after forwarding them.
     --&gt;
     &lt;Rule&gt;
         &lt;ForwardAddress&gt;Real Name &amp;lt;forward.to.me@somewhere.org&amp;gt;&lt;/ForwardAddress&gt;
         &lt;FromPattern&gt;^regular.*expression[pattern](match)&lt;/FromPattern&gt;
+        &lt;DeleteMessage&gt;false&lt;/DeleteMessage&gt;
     &lt;/Rule&gt;
     
     &lt;!-- 
         MATCH 'subject' only
+        
+        Delete messages after forwarding them.
     --&gt;
     &lt;Rule&gt;
         &lt;ForwardAddress&gt;Real Name &amp;lt;forward.to.me@somewhere.org&amp;gt;&lt;/ForwardAddress&gt;
         &lt;SubjectPattern&gt;^regular.*expression[pattern](match)&lt;/SubjectPattern&gt;
+        &lt;DeleteMessage&gt;true&lt;/DeleteMessage&gt;
     &lt;/Rule&gt;
 &lt;/Rules&gt;</source> 
     
