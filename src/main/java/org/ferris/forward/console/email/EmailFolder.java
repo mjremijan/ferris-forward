@@ -40,10 +40,15 @@ public class EmailFolder {
             throw new RuntimeException(e.getMessage(), e);
         }
     }
-
+    
+    public void expungeForwarded() {
+        holder.expungeForwarded();
+    }
+    
     interface Holder {
         List<EmailMessage> getMessages() throws MessagingException;
         void close(boolean expunge) throws MessagingException;
+        void expungeForwarded();
     }
 
     class DefaultHolder implements Holder {
@@ -51,12 +56,12 @@ public class EmailFolder {
         Store store;
         Folder folder;
         List<EmailMessage> messages;
-
+        
         public DefaultHolder(Store store, Folder folder) throws MessagingException {
             this.store = store;
             this.folder = folder;
             this.folder.open(Folder.READ_WRITE);
-
+            
             Message[] msgArray = folder.getMessages();
             if (msgArray == null || msgArray.length == 0) {
                 messages = Collections.emptyList();
@@ -66,7 +71,7 @@ public class EmailFolder {
                     .map(m -> new EmailMessage(m))
                     .collect(Collectors.toList());
             }
-        }
+        } 
 
         @Override
         public List<EmailMessage> getMessages() throws MessagingException {
@@ -77,6 +82,13 @@ public class EmailFolder {
         public void close(boolean expunge) throws MessagingException {
             folder.close(expunge);
             store.close();
+        }
+
+        @Override
+        public void expungeForwarded() {
+            messages.stream()
+                .filter(m->m.isForwarded())
+                .forEach(EmailMessage::expunge);
         }
     }
 
@@ -89,6 +101,10 @@ public class EmailFolder {
 
         @Override
         public void close(boolean expunge) throws MessagingException {
+        }
+        
+        @Override
+        public void expungeForwarded() {
         }
     }
 }
